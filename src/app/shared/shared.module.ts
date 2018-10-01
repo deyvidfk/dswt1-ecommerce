@@ -12,8 +12,12 @@ import {
 } from '@angular/material';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { TruncateModule } from '@yellowspot/ng-truncate';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material';
+
 @NgModule({
   imports: [
+    TruncateModule,
     MatButtonModule,
     MatCheckboxModule,
     MatToolbarModule,
@@ -36,6 +40,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   ],
   exports: [
     MainMenuComponent,
-    ProductListComponent]
+    ProductListComponent],
+    providers: [
+      {provide: MAT_DATE_LOCALE, useValue: 'pt'},
+    ]
 })
 export class SharedModule { }
