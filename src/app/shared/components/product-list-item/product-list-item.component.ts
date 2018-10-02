@@ -6,7 +6,8 @@ export interface ProductItem{
   value:any;
   id:number;
   imageUrl:string;
-  author:string
+  author:string,
+  images:Array<string>
 }
 
 @Component({

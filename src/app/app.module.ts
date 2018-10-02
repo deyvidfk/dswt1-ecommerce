@@ -15,12 +15,18 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
+import {MatDividerModule} from '@angular/material/divider';
+import {BreadcrumbsModule} from "ng6-breadcrumbs";
+import {MatBadgeModule} from '@angular/material/badge';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent    
   ],
   imports: [
+    MatBadgeModule,
+    BreadcrumbsModule,
+    MatDividerModule,
     MatInputModule,
     MatFormFieldModule,
     MatSidenavModule,

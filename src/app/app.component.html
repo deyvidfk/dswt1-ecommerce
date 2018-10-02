@@ -1,9 +1,34 @@
-<mat-toolbar>Store
+<div fxLayout="column">
+    <mat-toolbar style="background-color: #fff159;">
+        <mat-toolbar-row fxLayout="row" fxLayoutGap="16px">
 
-    <button mat-button routerLink='/home'>Comprar</button>
-    <button mat-button routerLink='/shopping-cart'> Meus pedidos</button>
-    <button mat-button routerLink='/product'>Produto</button>
-</mat-toolbar>
+            <span class="mat-title">Book Store</span>
 
+            <span fxFlex="auto"></span>
+            <button mat-button routerLink='/home'>Comprar</button>
+
+            <button matBadge="1" matBadgeColor="warn" mat-stroked-button routerLink='/shopping-cart'>
+                <mat-icon>shopping_cart</mat-icon>
+
+                Carrinho de compras
+            </button>
+        </mat-toolbar-row>
+
+    </mat-toolbar>
+
+
+    <div fxFlex="100" >
+        <mat-form-field appearance="outline" fxFlex="100" >
+            <!-- <mat-label>Outline form field</mat-label> -->
+            <input matInput placeholder="Buscar por livro..">
+            <mat-icon matSuffix>search</mat-icon>
+            <!-- <mat-hint>Hint</mat-hint> -->
+        </mat-form-field>
+    </div>
+
+    <breadcrumb [allowBootstrap]="true"></breadcrumb>
+
+
+</div>
 
 <router-outlet></router-outlet>

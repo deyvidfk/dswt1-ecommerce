@@ -1,5 +1,5 @@
 <style>
-table {
+    table {
   width: 100%;
 }
 td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
@@ -16,29 +16,35 @@ td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
         <gallery [items]="images"></gallery>
     </div>
 
-    <div>
-        <span>Celular Motorola Moto C 16gb 4g Dual Chip Xt-1755 + Nf</span>
-        <span>R$434,49 7% OFF</span>
-        <span>Frete grátis</span>
+    <div fxLayout="column" style="padding: 24px;margin: 8px">
+        <span class="mat-body-1">#01 produto</span>
+        <span class="mat-title">Celular Motorola Moto C 16gb 4g Dual Chip Xt-1755 + Nf</span>
+        <span class="mat-subheading-2">R$434,49 7% OFF</span>
+        <span class="mat-body-1">Frete grátis</span>
 
-
+        <mat-form-field appearance="outline" style="width: 100px;">
+            <!-- <mat-label>Outline form field</mat-label> -->
+            <input type="number" matInput placeholder="Qtd">
+            
+            <!-- <mat-hint>Hint</mat-hint> -->
+        </mat-form-field>
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="16px">
-            <button mat-raised-button color="primary" fxFlex.xs="100">
+            <button mat-stroked-button color="accent" fxFlex.xs="100">
                 COMPRAR AGORA
             </button>
 
-            <button mat-button fxFlex.xs="100">
+            <button mat-stroked-button fxFlex.xs="100">
                 ADICIONAR AO CARRINHO
             </button>
         </div>
     </div>
 </div>
 
-<div>
-    Caracteristicas
+<div style="padding: 8px;margin: 8px">
+    <mat-divider></mat-divider>
+    <span class="mat-title">Caracteristicas do produto</span>
 
-
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
 
         <ng-container matColumnDef="key" style="width: 150px;">
             <th mat-header-cell *matHeaderCellDef style="width: 150px;"></th>
@@ -46,7 +52,7 @@ td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
         </ng-container>
 
         <ng-container matColumnDef="value">
-            <th mat-header-cell *matHeaderCellDef > </th>
+            <th mat-header-cell *matHeaderCellDef> </th>
             <td mat-cell *matCellDef="let element"> {{element.value}} </td>
         </ng-container>
 

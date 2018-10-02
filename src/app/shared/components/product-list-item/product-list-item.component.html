@@ -1,25 +1,29 @@
 <mat-card >
-  <mat-card-header>
+  <mat-card-header style="height: 70px;">
     <!-- <div mat-card-avatar class="example-header-image"></div> -->
-    <mat-card-title>{{product.name}}</mat-card-title>
-    <mat-card-subtitle>{{product.author}} </mat-card-subtitle>
+    <mat-card-title>{{product.name | truncate : 50 : "..." }}</mat-card-title>
+    <mat-card-subtitle>{{product.author | truncate : 120 : "..." }} </mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image style="width: 220px;height: 220px; object-fit: scale-down;" src="{{product.imageUrl}}" alt="Photo of a Shiba Inu">
+  <img mat-card-image style="max-width: 220px;max-height: 220px; object-fit: scale-down;" src="{{product.imageUrl}}" alt="Photo of a Shiba Inu">
   <mat-card-content>
     <div fxLayout='column'>
-      <p>
+      <!-- <p>
         {{product.description | truncate : 120 : "..." }}
-      </p>
+      </p> -->
 
-      <div class="mat-title">
+      <div class="mat-subheading-2">
         {{product.value | currency:'BRL':true}}
       </div>
+      <div class="mat-subheading-1" style="color:#39b54a">
+          frete gratis
+        </div>
     </div>
 
   </mat-card-content>
   <mat-card-actions fxLayout='row'>
-    <button mat-stroked-button color="accent" fxFlex.xs="100">
+    <button routerLink='/product/{{product.id}}' mat-stroked-button color="accent" fxFlex.xs="100">
       COMPRAR
+      
     </button>
   </mat-card-actions>
 </mat-card>
