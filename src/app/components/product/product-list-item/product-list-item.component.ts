@@ -1,14 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ProductItem } from '../../../models/ProductItem';
 
-export interface ProductItem{
-  name:string;
-  description:string;
-  value:any;
-  id:number;
-  imageUrl:string;
-  author:string,
-  images:Array<string>
-}
+
 
 @Component({
   selector: 'app-product-list-item',
@@ -21,6 +14,7 @@ export class ProductListItemComponent implements OnInit {
   product:ProductItem;
 
   constructor() { }
+
 
   ngOnInit() {
   }

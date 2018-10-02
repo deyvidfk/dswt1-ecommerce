@@ -1,18 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { GalleryItem, ImageItem } from '@ngx-gallery/core';
-
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material';
+import { ProductItem } from '../../../models/ProductItem';
+import { ShoppingCartService } from '../../../services/shopping-cart.service';
+import { ProductsService } from '../../../services/products.service';
 export interface ProductDescriptExtraElement {
   key: string;
   value: string;
 }
 
 const ELEMENT_DATA: ProductDescriptExtraElement[] = [
-  {key: 'Marca', value: 'Hydrogen'},
-  {key: 'Modelo',value: 'Hydrogen'},
-  {key: 'Linha', value: 'Hydrogen'},
-  {key: 'Dimensões', value: 'Hydrogen'},
-  {key: 'Peso', value: 'Hydrogen'},
-  {key: 'Descrição', value: 'Hydrogen'}
+  { key: 'Marca', value: 'Hydrogen' },
+  { key: 'Modelo', value: 'Hydrogen' },
+  { key: 'Linha', value: 'Hydrogen' },
+  { key: 'Dimensões', value: 'Hydrogen' },
+  { key: 'Peso', value: 'Hydrogen' },
+  { key: 'Descrição', value: 'Hydrogen' }
 ];
 
 
@@ -23,23 +28,38 @@ const ELEMENT_DATA: ProductDescriptExtraElement[] = [
 })
 export class ProductDetailComponent implements OnInit {
 
-  constructor() { }
+  constructor(private shoppingCartService:ShoppingCartService, private productsService: ProductsService, private router: Router, private route: ActivatedRoute,private snackBar: MatSnackBar) { }
+
+  product: ProductItem;
+
+
   images: GalleryItem[];
 
   displayedColumns: string[] = ['key', 'value'];
   dataSource = ELEMENT_DATA;
 
-  ngOnInit() {
-       // Set gallery items array
-       this.images = [
-        new ImageItem({ src: 'https://images-americanas.b2w.io/produtos/01/00/item/133797/4/133797404_2SZ.jpg', thumb: 'https://images-americanas.b2w.io/produtos/01/00/item/133797/4/133797404_2SZ.jpg' }),
-        new ImageItem({ src: 'https://images-americanas.b2w.io/produtos/01/00/item/133797/4/133797404_2SZ.jpg', thumb: 'https://images-americanas.b2w.io/produtos/01/00/item/133797/4/133797404_2SZ.jpg' }),
-        new ImageItem({ src: 'https://images-americanas.b2w.io/produtos/01/00/item/133797/4/133797404_2SZ.jpg', thumb: 'https://images-americanas.b2w.io/produtos/01/00/item/133797/4/133797404_2SZ.jpg' }),
-        new ImageItem({ src: 'https://images-americanas.b2w.io/produtos/01/00/item/133797/4/133797404_2SZ.jpg', thumb: 'https://images-americanas.b2w.io/produtos/01/00/item/133797/4/133797404_2SZ.jpg' }),
-        new ImageItem({ src: 'https://images-americanas.b2w.io/produtos/01/00/item/133797/4/133797404_2SZ.jpg', thumb: 'https://images-americanas.b2w.io/produtos/01/00/item/133797/4/133797404_2SZ.jpg' }),
-        new ImageItem({ src: 'https://images-americanas.b2w.io/produtos/01/00/item/133797/4/133797404_2SZ.jpg', thumb: 'https://images-americanas.b2w.io/produtos/01/00/item/133797/4/133797404_2SZ.jpg' }),
-        // ... more items
-      ];
+
+  addProductToShoppingCart(){
+    debugger
+    this.shoppingCartService.addProduct(this.product.id);    
+    this.snackBar.open('Produto adicionado ao carrinho', '', { duration: 3000 });
+    this.router.navigate(['shopping-cart']);
   }
 
+  ngOnInit() {
+
+    this.route.params.pipe(switchMap((params: Params) => {
+    
+      return this.productsService.getProduct(Number(params['id']));
+    }))
+      .subscribe(function (data) {
+    
+        this.product = data;
+
+        this.images = data.images.map((imageUrl) => {
+          return new ImageItem({ src: imageUrl, thumb: imageUrl });
+        });
+
+      }.bind(this));
+  }
 }

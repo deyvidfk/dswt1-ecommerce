@@ -1,23 +1,24 @@
-<div class="mat-elevation-z2" fxLayoutAlign="space-between center" fxLayout="row" fxLayout.xs="column" fxLayoutAlign.xs="center center"
+<div  *ngFor="let product of products" class="mat-elevation-z2" fxLayoutAlign="space-between center" fxLayout="row" fxLayout.xs="column" fxLayoutAlign.xs="center center"
   fxLayoutGap="20px" style="padding: 24px;margin: 8px;">
 
-  <img style="width: 70px;height: 100px;" src="https://images-na.ssl-images-amazon.com/images/I/51AY5As2IKL._SX321_BO1,204,203,200_.jpg">
+
+<img style="width: 70px;height: 100px;" src="{{product?.imageUrl}}">
 
   <div fxLayout="column">
-    <span class="mat-body-1">#01 produto</span>
-    <span class="mat-title">Celular Motorola Moto C 16gb 4g Dual Chip Xt-1755 + Nf</span>
+    <span class="mat-body-1">#{{product?.id}} produto</span>
+    <span class="mat-title">{{product?.name}}</span>
     <span class="mat-body-1">Frete grátis</span>
   </div>
 
 
   <mat-form-field appearance="outline" style="width: 100px;">
-    <!-- <mat-label>Outline form field</mat-label> -->
+
     <input type="number" value="1" matInput placeholder="Qtd">
 
-    <!-- <mat-hint>Hint</mat-hint> -->
+
   </mat-form-field>
 
-  <span class="mat-title">R$ 23,00</span>
+  <span class="mat-title">{{product?.value | currency:'BRL':true}}</span> 
 </div>
 
 <div style="padding: 24px;margin: 8px;" fxLayout="column">

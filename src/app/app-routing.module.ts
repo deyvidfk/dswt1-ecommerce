@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component'
+import { Page404Component } from './components/page404-component/page404-component.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { ProductDetailComponent } from './components/product/product-detail/product-detail.component';
 
 const routes: Routes = [
   {
@@ -16,17 +19,18 @@ const routes: Routes = [
     }
   },
   {
-    path: 'shopping-cart', loadChildren: './components/shopping-cart/shopping-cart.module#ShoppingCartModule',
+    path: 'shopping-cart', component: ShoppingCartComponent,
     data: {
       breadcrumb: '/ Carrinho de compras'
     }
   },
   {
-    path: 'product/:id', loadChildren: './components/product/product.module#ProductModule',
+    path: 'product/:id', component: ProductDetailComponent,
     data: {
       breadcrumb: '/ Produto'
     }
-  }   // Code modified
+  },
+  { path:'**',component:Page404Component}   // Code modified
 ];
 
 @NgModule({

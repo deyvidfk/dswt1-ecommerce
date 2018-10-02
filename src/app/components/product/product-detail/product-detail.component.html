@@ -12,20 +12,22 @@ td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
 
 <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
 
+    --
+
     <div fxFlex="60" fxFlex.xs="60">
         <gallery [items]="images"></gallery>
     </div>
 
     <div fxLayout="column" style="padding: 24px;margin: 8px">
-        <span class="mat-body-1">#01 produto</span>
-        <span class="mat-title">Celular Motorola Moto C 16gb 4g Dual Chip Xt-1755 + Nf</span>
-        <span class="mat-subheading-2">R$434,49 7% OFF</span>
+        <span class="mat-body-1">#{{product.id}} produto</span>
+        <span class="mat-title">{{product.name}}</span>
+        <span class="mat-subheading-2">{{product.value | currency:'BRL':true}}</span>
         <span class="mat-body-1">Frete grátis</span>
 
         <mat-form-field appearance="outline" style="width: 100px;">
             <!-- <mat-label>Outline form field</mat-label> -->
             <input type="number" matInput placeholder="Qtd">
-            
+
             <!-- <mat-hint>Hint</mat-hint> -->
         </mat-form-field>
         <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="16px">
@@ -33,7 +35,7 @@ td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
                 COMPRAR AGORA
             </button>
 
-            <button mat-stroked-button fxFlex.xs="100">
+            <button (click)="addProductToShoppingCart()" mat-stroked-button fxFlex.xs="100">
                 ADICIONAR AO CARRINHO
             </button>
         </div>
